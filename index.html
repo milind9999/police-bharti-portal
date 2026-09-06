@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पोलिस भरती सराव पोर्टल २०२६ - Abhyaas Exam Portal</title>
+    <!-- रूट फोल्डर से डायरेक्ट questions.js लोड हो रहा है -->
+    <script src="questions.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --accent: #d97706;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        #home-screen { display: block; }
+
+        .profile-header {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .profile-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 3px solid #fbbf24;
+            object-fit: cover;
+            margin-bottom: 6px;
+        }
+
+        .badge-sankalp {
+            background: #fbbf24;
+            color: #78350f;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .slogan {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+
+        .control-group {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .control-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .input-box, .select-box {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            box-sizing: border-box;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .cat-card {
+            background: #f8fafc;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 9px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .cat-card:hover, .cat-card.active {
+            border-color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .cat-card .cat-name {
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--text-main);
+        }
+
+        .cat-card .cat-count {
+            font-size: 0.72rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .cat-card.full-width {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            border: none;
+        }
+        .cat-card.full-width .cat-name, .cat-card.full-width .cat-count {
+            color: white;
+        }
+
+        .subcat-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        .mode-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-mode {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            color: white;
+            text-align: center;
+        }
+        .btn-practice { background-color: var(--success); }
+        .btn-exam { background-color: var(--primary); }
+
+        /* क्विज़ स्क्रीन */
+        #quiz-screen { display: none; }
+
+        .quiz-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .top-btn {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .btn-audio { background: #d97706; color: white; border: none; }
+        .btn-voice { background: #7c3aed; color: white; border: none; }
+
+        .question-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .q-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .q-text {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-main);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .option-btn.correct {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        .option-btn.incorrect {
+            background: #fee2e2;
+            border-color: var(--danger);
+            color: #991b1b;
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn-nav {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: white;
+        }
+        .btn-next {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .reason-box {
+            margin-top: 10px;
+            padding: 10px;
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            font-size: 0.85rem;
+            color: #1e40af;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- होम स्क्रीन -->
+        <div id="home-screen">
+            <div class="profile-header">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Profile" class="profile-img">
+                <div class="badge-sankalp">⭐ आजचा खाकी संकल्प</div>
+                <div class="slogan">"खांद्यावर दोन स्टार आणि छातीवर महाराष्ट्राचा लोगो—हेच माझे स्वप्न!"</div>
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">👤 तुमचे नाव:</span>
+                <input type="text" id="userName" class="input-box" placeholder="उदा. मिलिंद भालके / विद्यार्थी...">
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">📊 प्रश्नसंख्या निवडा:</span>
+                <select id="questionCount" class="select-box">
+                    <option value="10">10 प्रश्न (फास्ट टेस्ट)</option>
+                    <option value="25" selected>25 प्रश्न (क्विक सराव)</option>
+                    <option value="50">50 प्रश्न (अर्धी टेस्ट)</option>
+                    <option value="100">100 प्रश्न (फुल टेस्ट)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">⚡ स्पीड बूस्टर / 타이मर मोड:</span>
+                <select id="timerMode" class="select-box">
+                    <option value="off">बंद (Off)</option>
+                    <option value="30">30 सेकंद प्रति प्रश्न</option>
+                    <option value="60">60 सेकंद प्रति प्रश्न</option>
+                </select>
+            </div>
+
+            <div class="section-title">📂 अभ्यास करण्यासाठी विषय निवडा:</div>
+            <div class="category-grid" id="categoryGrid">
+                <div style="grid-column: span 2; text-align: center; color: var(--primary); padding: 15px; font-weight: 600;">
+                    ⏳ ७५,०००+ प्रश्न लोड होत आहेत... कृपया २ सेकंद थांबा.
+                </div>
+            </div>
+
+            <!-- स्पेसिफिक सब-टॉपिक सिलेक्शन बॉक्स -->
+            <div class="subcat-box" id="subCategoryBox">
+                <span class="control-label" style="color: #1d4ed8;">🎯 स्पेसिफिक चॅप्टर / सब-टॉपीक निवडा:</span>
+                <select id="subCategorySelect" class="select-box">
+                    <option value="All">सर्व सब-टॉपिक्स (Full Subject Mix)</option>
+                </select>
+            </div>
+
+            <div class="mode-container">
+                <button class="btn-mode btn-practice" onclick="startQuiz('practice')">🎯 सराव मोड (Practice)</button>
+                <button class="btn-mode btn-exam" onclick="startQuiz('exam')">📝 परीक्षा मोड (Exam)</button>
+            </div>
+        </div>
+
+        <!-- क्विज़ स्क्रीन -->
+        <div id="quiz-screen">
+            <div class="quiz-top-bar">
+                <span id="q-counter">प्रश्न 1 / 25</span>
+                <div>
+                    <button class="top-btn btn-audio" onclick="speakQuestion()">🔊 ऑडिओ</button>
+                    <button class="top-btn btn-voice" onclick="startVoiceInput()">🎤 उत्तर बोला</button>
+                    <button class="top-btn" onclick="goHome()">🏠 थांबा</button>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <div class="q-badge" id="q-category">बुद्धिमत्ता</div>
+                <div class="q-text" id="q-text">प्रश्नाचा मजकूर...</div>
+            </div>
+
+            <div class="options-list" id="options-container"></div>
+
+            <div class="reason-box" id="reason-box"></div>
+
+            <div class="quiz-footer">
+                <button class="btn-nav" onclick="prevQuestion()">⬅ मागील</button>
+                <button class="btn-nav btn-next" onclick="nextQuestion()">पुढील प्रश्न ➡</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedCategory = "All";
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+
+        function initPortal() {
+            const grid = document.getElementById('categoryGrid');
+            
+            if (typeof masterQuizPool === 'undefined' || !Array.isArray(masterQuizPool)) {
+                grid.innerHTML = `<div style="grid-column: span 2; color: var(--primary); font-size: 0.85rem; text-align: center;">⏳ डेटाबेस लोड होत आहे... कृपया २ सेकंद प्रतीक्षा करा.</div>`;
+                setTimeout(initPortal, 300);
+                return;
+            }
+
+            const counts = { "All": masterQuizPool.length };
+            masterQuizPool.forEach(q => {
+                let cat = q.category || "GK & चालू घडामोडी";
+                counts[cat] = (counts[cat] || 0) + 1;
+            });
+
+            grid.innerHTML = '';
+
+            let allCard = document.createElement('div');
+            allCard.className = `cat-card full-width ${selectedCategory === 'All' ? 'active' : ''}`;
+            allCard.innerHTML = `
+                <div class="cat-name">🌟 सर्व विषय (Mix)</div>
+                <div class="cat-count">${counts["All"]} प्रश्न उपलब्ध</div>
+            `;
+            allCard.onclick = () => selectCategory("All", allCard);
+            grid.appendChild(allCard);
+
+            const standardCategories = [
+                "मराठी व्याकरण",
+                "गणित (Maths)",
+                "बुद्धिमत्ता",
+                "इतिहास (History)",
+                "भूगोल (Geography)",
+                "विज्ञान (Science)",
+                "राज्यघटना (Polity)",
+                "समाजसुधारक (Social Reformers)",
+                "GK & चालू घडामोडी"
+            ];
+
+            standardCategories.forEach(cat => {
+                if (counts[cat] && counts[cat] > 0) {
+                    let card = document.createElement('div');
+                    card.className = `cat-card ${selectedCategory === cat ? 'active' : ''}`;
+                    card.innerHTML = `
+                        <div class="cat-name">${cat}</div>
+                        <div class="cat-count">${counts[cat]} Q</div>
+                    `;
+                    card.onclick = () => selectCategory(cat, card);
+                    grid.appendChild(card);
+                }
+            });
+        }
+
+        function selectCategory(cat, element) {
+            selectedCategory = cat;
+            document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+
+            const subBox = document.getElementById('subCategoryBox');
+            const subSelect = document.getElementById('subCategorySelect');
+
+            if (cat === "All") {
+                subBox.style.display = 'none';
+            } else {
+                let subTopics = [...new Set(masterQuizPool.filter(q => q.category === cat).map(q => q.subCategory || "इतर"))];
+                
+                subSelect.innerHTML = `<option value="All">सर्व सब-टॉपिक्स (Full Subject Mix)</option>`;
+                subTopics.forEach(sub => {
+                    subSelect.innerHTML += `<option value="${sub}">${sub}</option>`;
+                });
+                
+                subBox.style.display = 'block';
+            }
+        }
+
+        function startQuiz(mode) {
+            if (typeof masterQuizPool === 'undefined' || !Array.isArray(masterQuizPool)) {
+                alert('डेटाबेस अजूनही लोड होत आहे, कृपया २ सेकंद थांबा!');
+                return;
+            }
+
+            let limit = parseInt(document.getElementById('questionCount').value) || 25;
+            let subCat = document.getElementById('subCategorySelect').value;
+
+            let poolToFilter = masterQuizPool;
+            if (selectedCategory !== "All") {
+                poolToFilter = poolToFilter.filter(q => q.category === selectedCategory);
+                if (subCat !== "All") {
+                    poolToFilter = poolToFilter.filter(q => q.subCategory === subCat);
+                }
+            }
+
+            currentQuestions = [...poolToFilter].sort(() => 0.5 - Math.random()).slice(0, limit);
+
+            if (currentQuestions.length === 0) {
+                alert("इस चयन (Selection) में प्रश्न उपलब्ध नहीं हैं!");
+                return;
+            }
+
+            currentIndex = 0;
+            score = 0;
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            let q = currentQuestions[currentIndex];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentIndex + 1} / ${currentQuestions.length}`;
+            document.getElementById('q-category').innerText = `${q.category} > ${q.subCategory || 'General'}`;
+            document.getElementById('q-text').innerText = q.question;
+            document.getElementById('reason-box').style.display = 'none';
+
+            let optContainer = document.getElementById('options-container');
+            optContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                let btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = `${idx + 1}) ${opt}`;
+                btn.onclick = () => checkAnswer(idx, q.correct, btn);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct, btnElement) {
+            let buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.onclick = null);
+
+            if (selected === correct) {
+                btnElement.classList.add('correct');
+                score++;
+            } else {
+                btnElement.classList.add('incorrect');
+                buttons[correct].classList.add('correct');
+            }
+
+            let q = currentQuestions[currentIndex];
+            if (q.reason) {
+                let rBox = document.getElementById('reason-box');
+                rBox.innerText = `💡 स्पष्टीकरण: ${q.reason}`;
+                rBox.style.display = 'block';
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                loadQuestion();
+            } else {
+                let userName = document.getElementById('userName').value.trim() || 'विद्यार्थी';
+                alert(`🎉 अभिनंदन ${userName}! टेस्ट समाप्त. आपका स्कोर: ${score} / ${currentQuestions.length}`);
+                goHome();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadQuestion();
+            }
+        }
+
+        function goHome() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('home-screen').style.display = 'block';
+        }
+
+        function speakQuestion() {
+            let q = currentQuestions[currentIndex];
+            let text = `${q.question}. पर्याय आहेत: ${q.options.join(', ')}`;
+            let speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'mr-IN';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function startVoiceInput() {
+            try {
+                let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.lang = 'mr-IN';
+                recognition.onresult = function(event) {
+                    let spokenText = event.results[0][0].transcript.toLowerCase();
+                    alert(`आपने बोला: ${spokenText}`);
+                };
+                recognition.start();
+            } catch (e) {
+                alert("आपके ब्राउज़र में वॉइस स्पीच सपोर्ट उपलब्ध नहीं है।");
+            }
+        }
+
+        window.onload = function() {
+            initPortal();
+        };
+    </script>
+</body>
+</html>
