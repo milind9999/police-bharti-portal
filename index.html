@@ -359,25 +359,53 @@
         const lastNames = ["पाटील", "देशमुख", "शिंदे", "पवार", "जाधव", "भोसले", "कुळकर्णी", "मोरे", "गाडे", "काळे"];
         const districts = ["पुणे", "नाशिक", "नागपूर", "छत्रपती संभाजीनगर", "सातारा", "लातूर", "कोल्हापूर"];
 
-        // Full Complete Syllabus Topics Mapped with All 23 Math Subtopics
+        // Full Updated Syllabus Topics Mapped with User's Detailed Subtopics (Marathi 34, Intelligence 23, Math 23, GK Chapters)
         const syllabusTopics = {
             marathi: [
-                { name: '१. वर्णविचार व शब्दविचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return (t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन') || t.includes('संधी')) && !t.includes('प्रयोग') && !t.includes('समास'); } },
-                { name: '२. प्रयोग (Prayog)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('प्रयोग') || t.includes('कर्तरी') || t.includes('कर्मणी') || t.includes('भावे'); } },
-                { name: '३. विशेषण व नाम', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('नाम') || t.includes('सर्वनाम') || t.includes('विशेषण') || t.includes('क्रियापद'); } },
-                { name: '४. समास व शब्दसमूह', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समास') || t.includes('शब्दसमूह') || t.includes('विग्रह') || t.includes('सामासिक'); } },
-                { name: '५. समानार्थी व विरुद्धार्थी शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समानार्थी') || t.includes('विरुद्धार्थी'); } },
-                { name: '६. वाक्प्रचार व म्हणी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वाक्प्रचार') || t.includes('म्हण') || t.includes('अर्थ सांगा'); } }
+                { name: '१. वर्णविचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन'); } },
+                { name: '२. संधी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संधी'); } },
+                { name: '३. शब्दांच्या जाती', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('जात') || t.includes('नाम') || t.includes('सर्वनाम') || t.includes('विशेषण') || t.includes('क्रियापद'); } },
+                { name: '४. लिंग विचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('लिंग'); } },
+                { name: '५. वचन विचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वचन'); } },
+                { name: '६. क्रियापदांचे काळ', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('काळ') && !t.includes('काळ-काम'); } },
+                { name: '७. क्रियापदांचे अर्थ', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('अर्थ'); } },
+                { name: '८. विभक्ती-सामान्यरूप - कारकार्थ', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विभक्ती') || t.includes('सामान्यरूप') || t.includes('कारकार्थ'); } },
+                { name: '९. प्रयोग', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('प्रयोग') || t.includes('कर्तरी') || t.includes('कर्मणी') || t.includes('भावे'); } },
+                { name: '१०. समास', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समास'); } },
+                { name: '११. मराठीतील शुद्ध शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('शुद्ध शब्द') || t.includes('अशुद्ध'); } },
+                { name: '१२. विरामचिन्हे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विरामचिन्ह'); } },
+                { name: '१३. वाक्याचे प्रकार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वाक्याचे प्रकार'); } },
+                { name: '१४. वाक्यांचे रूपांतर', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('रूपांतर'); } },
+                { name: '१५. वाक्य पृथक्करण', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पृथक्करण'); } },
+                { name: '१६. समानार्थी शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समानार्थी'); } },
+                { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('महत्त्वाचे शब्द'); } },
+                { name: '१८. शब्दसमूहाबद्दल एक शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('शब्दसमूहाबद्दल'); } },
+                { name: '१९. अलंकारिक शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('अलंकारिक'); } },
+                { name: '२०. वाक्प्रचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वाक्प्रचार'); } },
+                { name: '२१. महत्त्वाच्या म्हणी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('म्हण') || t.includes('म्हणी'); } },
+                { name: '२२. शब्दसिद्धी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('शब्दसिद्धी'); } },
+                { name: '२३. शब्दांच्या शक्ती', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('शक्ती'); } },
+                { name: '२४. अलंकार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('अलंकार'); } },
+                { name: '२५. वृत्त', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वृत्त'); } },
+                { name: '२६. रस', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('रस'); } },
+                { name: '२७. ध्वनिदर्शक शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('ध्वनिदर्शक'); } },
+                { name: '२८. प्राणी व त्यांची घरे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('घर'); } },
+                { name: '२९. प्राणी व त्यांची पििल्ले', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पिल्ले') || t.includes('पििल्ले'); } },
+                { name: '३०. समूहदर्शक शब्द', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समूहदर्शक'); } },
+                { name: '३१. मराठीतील टोपणनावे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('टोपणनाव'); } },
+                { name: '३२. लेखक व साहित्य', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('लेखक') || t.includes('साहित्य'); } },
+                { name: '३३. संकीर्ण', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संकीर्ण'); } },
+                { name: '३४. अव्यय - क्रियाविशेषण अव्यय, शब्दयोगी अव्यय, उभयान्वयी अव्यय, केवलप्रयोगी अव्यय', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('अव्यय'); } }
             ],
             math: [
                 { name: '१. संख्याज्ञान व संख्यांचे प्रकार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संख्या') || t.includes('मूळ') || t.includes('सम') || t.includes('विषम') || t.includes('रोमन') || t.includes('स्थानिक'); } },
                 { name: '२. बेरीज, वजाबाकी, गुणाकार भागाकार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('बेरीज') || t.includes('वजाबाकी') || t.includes('गुणाकार') || t.includes('भागाकार') || t.includes('भागकार'); } },
-                { name: '३. पदावली', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पदावली') || t.includes('बॉडमास') || t.includes('bodmas'); } },
+                { name: '३. पदावली', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पदावली') || t.includes('bodmas'); } },
                 { name: '४. विभाज्यतेच्या कसोट्या', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('कसोटी') || t.includes('विभाज्य'); } },
                 { name: '५. मसावि आणि लसावि', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('लसावि') || t.includes('मसावि') || t.includes('lcm') || t.includes('hcf'); } },
                 { name: '६. व्यवहारी अपूर्णांक', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('व्यवहारी अपूर्णांक') || (t.includes('अपूर्णांक') && !t.includes('दशांश')); } },
                 { name: '७. दशांश अपूर्णांक', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('दशांश') || t.includes('point'); } },
-                { name: '८. घातांक', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('घातांक') || t.includes('घात') || t.includes('power'); } },
+                { name: '८. घातांक', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('घातांक') || t.includes('घात'); } },
                 { name: '९. वर्गमूळ-घनमूळ', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वर्गमूळ') || t.includes('घनमूळ') || t.includes('वर्ग') || t.includes('घन'); } },
                 { name: '१०. सरासरी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('सरासरी') || t.includes('average'); } },
                 { name: '११. गुणोत्तर प्रमाण', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('गुणोत्तर') || t.includes('प्रमाण') || t.includes('ratio'); } },
@@ -395,19 +423,41 @@
                 { name: '२३. शाब्दिक गणिते - एकरेषीय समीकरणे व वर्ग समीकरणे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समीकरण') || t.includes('शाब्दिक') || t.includes('किंमत काढा'); } }
             ],
             intelligence: [
-                { name: '१. संख्या मालिका (Number Series)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('मालिका') || t.includes('अंकमालिका') || t.includes('पद ओळखा'); } },
-                { name: '२. सांकेतिक लिपी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('सांकेतिक') || t.includes('कोड') || t.includes('लिपी'); } },
-                { name: '३. नाते संबंध (Blood Relations)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('नाते') || t.includes('संबंध') || t.includes('आजोबा') || t.includes('बहीण') || t.includes('छायाचित्र'); } },
-                { name: '४. दिशा व अंतर', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('दिशा') || t.includes('पूर्वेकडे') || t.includes('उत्तरेकडे') || t.includes('किलोमीटर चालला'); } },
-                { name: '५. घड्याळ व कालमापन', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('घड्याळ') || t.includes('कोन') || t.includes('मिनिटे') || t.includes('वार काढणे'); } },
-                { name: '६. वेन आकृती व तर्कशास्त्र', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वेन आकृती') || t.includes('तर्क') || t.includes('विधान') || t.includes('निष्कर्ष'); } }
+                { name: '१. क्रमबद्ध मालिका', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('मालिका') || t.includes('अंकमालिका'); } },
+                { name: '२. विजोड, विसंगत पद ओळखणे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विजोड') || t.includes('विसंगत'); } },
+                { name: '३. समान संबंध किंवा परस्पर संबंध', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('समान संबंध') || t.includes('परस्पर संबंध'); } },
+                { name: '४. सांकेतिक लिपी किंवा भाषा', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('सांकेतिक') || t.includes('कोड') || t.includes('लिपी'); } },
+                { name: '५. संख्या संचातील अंक शोधणे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संख्या संच'); } },
+                { name: '६. आकृत्यांमधील अंक शोधणे भाग 1', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('आकृती') || t.includes('अंक शोधणे'); } },
+                { name: '७. आकृत्यांमधील अंक शोधणे 2', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('आकृती') || t.includes('अंक शोधणे'); } },
+                { name: '८. वेन आकृती भाग 1', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वेन आकृती'); } },
+                { name: '९. वेन आकृती भाग 2', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वेन आकृती'); } },
+                { name: '१०. विधाने व अनुमाने', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विधान') || t.includes('अनुमान'); } },
+                { name: '११. रांगेवर आधारित प्रश्न', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('रांग') || t.includes('रांगेवर'); } },
+                { name: '१२. दिशा व अंतर ओळखणे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('दिशा') || t.includes('अंतर'); } },
+                { name: '१३. कालमापन (दिनदर्शिका)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('कालमापन') || t.includes('दिनदर्शिका') || t.includes('कैलेंडर'); } },
+                { name: '१४. आकृतीची आरशातील प्रतिमा', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('आरसा') || t.includes('प्रतिमा'); } },
+                { name: '१५. आकृतीचे पाण्यातील प्रतिबिंब', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पाण्यातील') || t.includes('प्रतिबिंब'); } },
+                { name: '१६. आकृत्यांची संख्या मोजणे', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('आकृती') || t.includes('मोजणे'); } },
+                { name: '१७. नाते संबंधांची ओळख', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('नाते') || t.includes('संबंध'); } },
+                { name: '१८. तुलनात्मक प्रश्न', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('तुलना'); } },
+                { name: '१९. घड्याळावरील प्रश्न', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('घड्याळ') || t.includes('कोन'); } },
+                { name: '२०. निरीक्षण आणि आकलन', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('निरीक्षण') || t.includes('आकलन'); } },
+                { name: '२१. संकीर्ण प्रश्न', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संकीर्ण'); } },
+                { name: '२२. वयवारी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वय') || t.includes('वर्षे'); } },
+                { name: '२३. कूट प्रश्न', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('कूट'); } }
             ],
             gk: [
-                { name: '१. इतिहास (Indian History)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('इतिहास') || t.includes('शिवराया') || t.includes('लढाई') || t.includes('राज्यपाल') || t.includes('संस्थापक'); } },
-                { name: '२. भूगोल (Geography)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('भूगोल') || t.includes('नदी') || t.includes('जिल्हा') || t.includes('सरोवर') || t.includes('डोंगरा') || t.includes('पर्वत'); } },
-                { name: '३. राज्यघटना (Indian Polity)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('राज्यघटना') || t.includes('कलम') || t.includes('संविधान') || t.includes('राष्ट्रपती') || t.includes('संसद'); } },
-                { name: '४. सामान्य विज्ञान (Science)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विज्ञान') || t.includes('जीवनसत्व') || t.includes('रक्त') || t.includes('किरण') || t.includes('अणू') || t.includes('रोग'); } },
-                { name: '५. चालू घडामोडी व पुरस्कार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('चालू घडामोडी') || t.includes('पुरस्कार') || t.includes('2026') || t.includes('2025') || t.includes('नियुक्ती'); } }
+                { name: '१. सामान्यज्ञान - इतिहास (भारताचा इतिहास)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('इतिहास') || t.includes('शिवराया') || t.includes('लढाई'); } },
+                { name: '२. सामान्यज्ञान - इतिहास (समाजसुधारक)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('सुधारक') || t.includes('समाजसुधारक'); } },
+                { name: '३. सामान्यज्ञान - इतिहास (महाराष्ट्रविषयक सामान्यज्ञान)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('महाराष्ट्र') && t.includes('इतिहास'); } },
+                { name: '४. सामान्यज्ञान - नागरिकशास्त्र/राज्यशास्त्र (भारतीय राज्यघटना)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('राज्यघटना') || t.includes('कलम') || t.includes('संविधान'); } },
+                { name: '५. सामान्यज्ञान - नागरिकशास्त्र/राज्यशास्त्र (पंचायतराज व स्थानिक स्वराज्य)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('पंचायतराज') || t.includes('स्थानिक स्वराज्य'); } },
+                { name: '६. सामान्यज्ञान - अर्थशास्त्र', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('अर्थशास्त्र') || t.includes('बजेट') || t.includes('अर्थसंकल्प'); } },
+                { name: '७. सामान्यज्ञान - भूगोल (जगाचा व भारताचा भूगोल)', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('भूगोल') || t.includes('नदी') || t.includes('सरोवर') || t.includes('पर्वत'); } },
+                { name: '८. सामान्यज्ञान - विज्ञान व तंत्रज्ञान', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('विज्ञान') || t.includes('जीवनसत्व') || t.includes('रक्त'); } },
+                { name: '९. सामान्यज्ञान - संगणक व माहिती तंत्रज्ञान', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संगणक') || t.includes('कम्प्युटर') || t.includes('computor') || t.includes('it'); } },
+                { name: '१०. चालू घडामोडी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('चालू घडामोडी') || t.includes('पुरस्कार') || t.includes('2026') || t.includes('2025'); } }
             ]
         };
 
@@ -993,7 +1043,7 @@
         function speakText(text) {
             lastSpokenText = text;
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
+                window.speechSynthesis.load ? window.speechSynthesis.load() : null;
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'mr-IN';
                 window.speechSynthesis.speak(utterance);
