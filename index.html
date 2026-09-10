@@ -362,7 +362,7 @@
         // Complete Updated Syllabus Topics Mapped with All User Chapters and Subtopics
         const syllabusTopics = {
             marathi: [
-                { name: '१. वर्णविचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन'); } },
+                { name: '१. वर्णविचार', filterFn: q => { let t = (q.question + " " + (q.reason || "") + " " + (q.category || "")).toLowerCase(); return t.includes('वर्णविचार') || t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन') || t.includes('अक्षर') || t.includes('उच्चार') || t.includes('लिपी') || t.includes('जोडाक्षर'); } },
                 { name: '२. संधी', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('संधी'); } },
                 { name: '३. शब्दांच्या जाती', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('जात') || t.includes('नाम') || t.includes('सर्वनाम') || t.includes('विशेषण') || t.includes('क्रियापद'); } },
                 { name: '४. लिंग विचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('लिंग'); } },
