@@ -95,7 +95,7 @@
                             <span id="intelligence-count" class="text-[9px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-full font-bold mt-1 inline-block">0 Q</span>
                         </button>
                         <button onclick="selectSubject('gk')" id="btn-gk" class="subject-btn col-span-2 p-2 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 text-left transition bg-white">
-                            <div class="text-xs font-bold text-slate-800">🌍 चालू घडामोडी / GK</div>
+                            <div class="text-xs font-bold text-slate-800">🌍 सामान्यज्ञान / GK</div>
                             <span id="gk-count" class="text-[9px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-full font-bold mt-1 inline-block">0 Q</span>
                         </button>
                     </div>
@@ -359,7 +359,7 @@
         const lastNames = ["पाटील", "देशमुख", "शिंदे", "पवार", "जाधव", "भोसले", "कुळकर्णी", "मोरे", "गाडे", "काळे"];
         const districts = ["पुणे", "नाशिक", "नागपूर", "छत्रपती संभाजीनगर", "सातारा", "लातूर", "कोल्हापूर"];
 
-        // Full Updated Syllabus Topics Mapped with User's Detailed Subtopics (Marathi 34, Intelligence 23, Math 23, GK Chapters)
+        // Complete Updated Syllabus Topics Mapped with All User Chapters and Subtopics
         const syllabusTopics = {
             marathi: [
                 { name: '१. वर्णविचार', filterFn: q => { let t = (q.question + " " + (q.reason || "")).toLowerCase(); return t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन'); } },
@@ -583,7 +583,7 @@
                 b.className = 'subject-btn p-2 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 text-left transition bg-white';
             });
             document.getElementById('btn-' + sub).className = 'subject-btn p-2 rounded-2xl border-2 border-indigo-600 bg-indigo-50/50 text-left transition shadow-xs';
-            const names = { 'mix': 'सर्व विषय', 'marathi': 'मराठी व्याकरण', 'math': 'गणित (Maths)', 'intelligence': 'बुद्धिमत्ता', 'gk': 'GK & चालू घडामोडी' };
+            const names = { 'mix': 'सर्व विषय', 'marathi': 'मराठी व्याकरण', 'math': 'गणित (Maths)', 'intelligence': 'बुद्धिमत्ता', 'gk': 'सामान्यज्ञान / GK' };
             document.getElementById('selected-subject-display').innerText = 'निवडलेला विषय: ' + names[sub];
         }
 
@@ -719,7 +719,7 @@
             let filtered = uniquePool.filter(filterFn);
 
             if(filtered.length === 0) {
-                alert('या विशिष्ट टॉपिकसाठी प्रश्न उपलब्ध नाहीत.');
+                alert('या विशिष्ट टॉपिकसाठी प्रश्न उपलब्ध नाहीत. कृपया पीडीएफ अपलोड करा किंवा प्रश्न जनरेट करा.');
                 return;
             }
 
