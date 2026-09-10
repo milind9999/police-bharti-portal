@@ -531,7 +531,7 @@
             });
         }
 
-        function updateCategoryCounts() {
+      function updateCategoryCounts() {
     let combinedPool = masterQuizPool;
     if (combinedPool.length === 0) return;
 
@@ -541,11 +541,26 @@
 
     let total = cleanPool.length;
     
-    // Updated robust filter for Marathi Grammar categories
-    let marathiCount = cleanPool.filter(q => q.category && (q.category.includes('मराठी') || q.category.includes('व्याकरण') || q.category.includes('वर्णविचार'))).length;
-    let mathCount = cleanPool.filter(q => q.category && (q.category.includes('गणित') || q.category.includes('Math') || q.category.includes('अंकगणित'))).length;
-    let intelCount = cleanPool.filter(q => q.category && (q.category.includes('बुद्धि') || q.category.includes('बुद्धी') || q.category.includes('तर्क') || q.category.includes('मालिक') || q.category.includes('Intelligence') || q.category.includes('Reasoning'))).length;
-    let gkCount = cleanPool.filter(q => q.category && (q.category.includes('चालू') || q.category.includes('GK') || q.category.includes('सामान्य') || q.category.includes('इतिहास') || q.category.includes('भूगोल') || q.category.includes('राज्यघटना') || q.category.includes('विज्ञान') || q.category.includes('अर्थव्यवस्था'))).length;
+    // सभी प्रश्नों के टेक्स्ट और कैटेगरी को मिलाकर मजबूत मैचिंग लॉजिक
+    let marathiCount = cleanPool.filter(q => {
+        let text = ((q.category || "") + " " + (q.question || "")).toLowerCase();
+        return text.includes('मराठी') || text.includes('व्याकरण') || text.includes('वर्ण') || text.includes('स्वर') || text.includes('व्यंजन') || text.includes('संधी') || text.includes('शब्द') || text.includes('लिंग') || text.includes('वचन') || text.includes('काळ') || text.includes('विभक्ती') || text.includes('प्रयोग') || text.includes('समास') || text.includes('अलंकार') || text.includes('म्हण') || text.includes('वाक्प्रचार');
+    }).length;
+
+    let mathCount = cleanPool.filter(q => {
+        let text = ((q.category || "") + " " + (q.question || "")).toLowerCase();
+        return text.includes('गणित') || text.includes('math') || text.includes('अंकगणित') || text.includes('संख्या') || text.includes('बेरीज') || text.includes('वजाबाकी') || text.includes('गुणाकार') || text.includes('लसावि') || text.includes('मसावि') || text.includes('शेकडेवारी') || text.includes('नफा') || text.includes('व्याज') || text.includes('भूमिती');
+    }).length;
+
+    let intelCount = cleanPool.filter(q => {
+        let text = ((q.category || "") + " " + (q.question || "")).toLowerCase();
+        return text.includes('बुद्धि') || text.includes('तर्क') || text.includes('intelligence') || text.includes('reasoning') || text.includes('मालिका') || text.includes('दिशा') || text.includes('नाते') || text.includes('वेन') || text.includes('प्रतिमा') || text.includes('कालमापन') || text.includes('घड्याळ');
+    }).length;
+
+    let gkCount = cleanPool.filter(q => {
+        let text = ((q.category || "") + " " + (q.question || "")).toLowerCase();
+        return text.includes('gk') || text.includes('सामान्यज्ञान') || text.includes('इतिहास') || text.includes('भूगोल') || text.includes('राज्यघटना') || text.includes('विज्ञान') || text.includes('अर्थशास्त्र') || text.includes('चालू घडामोडी') || text.includes('संगणक') || text.includes('सुधारक');
+    }).length;
 
     document.getElementById('mix-count').innerText = total + ' Q';
     document.getElementById('marathi-count').innerText = marathiCount + ' Q';
