@@ -387,7 +387,24 @@
                         ) && !t.includes('संधी') && !t.includes('शब्दसिद्धी') && !t.includes('समास') && !t.includes('प्रयोग'); 
                     } 
                 },
-                { name: '२. संधी', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('संधी') || t.includes('संधि'); } },
+                { 
+                    name: '२. संधी', 
+                    filterFn: q => { 
+                        let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); 
+                        return (
+                            t.includes('संधी') || 
+                            t.includes('संधि') || 
+                            t.includes('विग्रह') || 
+                            t.includes('पूर्वरुप') || 
+                            t.includes('पररुप') || 
+                            t.includes('स्वरसंधी') || 
+                            t.includes('व्यंजनसंधी') || 
+                            t.includes('विसर्गसंधी') ||
+                            t.includes('गुणादेश') ||
+                            t.includes('यणादेश')
+                        ); 
+                    } 
+                },
                 { name: '३. शब्दांच्या जाती', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('जात') || t.includes('नाम') || t.includes('सर्वनाम') || t.includes('विशेषण') || t.includes('क्रियापद') || t.includes('शब्द'); } },
                 { name: '४. लिंग विचार', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('लिंग'); } },
                 { name: '५. वचन विचार', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('वचन'); } },
@@ -1091,7 +1108,6 @@
 
         function resumeMainStory() {
             stopAudio();
-            document.getElementById("deep-dump-box")?.classList.add("hidden");
             document.getElementById("deep-dive-box").classList.add("hidden");
             document.getElementById("ai-status").textContent = "मुख्य कथेवर परतलो.";
         }
