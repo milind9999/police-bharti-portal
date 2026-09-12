@@ -362,7 +362,31 @@
         // Complete Updated Syllabus Topics Mapped with Robust Filter Logic
         const syllabusTopics = {
             marathi: [
-                { name: '१. वर्णविचार', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('वर्णविचार') || t.includes('वर्ण') || t.includes('स्वर') || t.includes('व्यंजन') || t.includes('अक्षर') || t.includes('उच्चार') || t.includes('लिपी') || t.includes('जोडाक्षर'); } },
+                { 
+                    name: '१. वर्णविचार', 
+                    filterFn: q => { 
+                        let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); 
+                        return (
+                            t.includes('वर्ण') || 
+                            t.includes('स्वर') || 
+                            t.includes('व्यंजन') || 
+                            t.includes('स्वरादी') || 
+                            t.includes('उच्चार') || 
+                            t.includes('महाप्राण') || 
+                            t.includes('अल्पप्राण') || 
+                            t.includes('जोडाक्षर') || 
+                            t.includes('वर्णमाला') || 
+                            t.includes('अनुनासिक') || 
+                            t.includes('परसवर्ण') || 
+                            t.includes('अकारविल्हे') || 
+                            t.includes('तालव्य') ||
+                            t.includes('कंठ्य') ||
+                            t.includes('मूर्धन्य') ||
+                            t.includes('दंत्य') ||
+                            t.includes('ओष्ठ्य')
+                        ) && !t.includes('संधी') && !t.includes('शब्दसिद्धी') && !t.includes('समास') && !t.includes('प्रयोग'); 
+                    } 
+                },
                 { name: '२. संधी', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('संधी') || t.includes('संधि'); } },
                 { name: '३. शब्दांच्या जाती', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('जात') || t.includes('नाम') || t.includes('सर्वनाम') || t.includes('विशेषण') || t.includes('क्रियापद') || t.includes('शब्द'); } },
                 { name: '४. लिंग विचार', filterFn: q => { let t = ((q.category || "") + " " + (q.question || "") + " " + (q.reason || "")).toLowerCase(); return t.includes('लिंग'); } },
@@ -486,7 +510,6 @@
             const savedFace = localStorage.getItem('user_police_face');
             if(savedFace) document.getElementById('user-avatar-img').src = savedFace;
 
-            // Fetch questions.json asynchronously for high scale & stability
             try {
                 const response = await fetch('questions.json');
                 if(!response.ok) throw new Error('Network response failed');
@@ -531,7 +554,6 @@
             });
         }
 
-        // Robust category count calculation matching subtopic filters perfectly
         function updateCategoryCounts() {
             let combinedPool = masterQuizPool;
             if (combinedPool.length === 0) return;
@@ -542,7 +564,6 @@
 
             let total = cleanPool.length;
             
-            // Count matching each subject pool dynamically using subtopic match criteria
             let marathiCount = cleanPool.filter(q => syllabusTopics.marathi.some(top => top.filterFn(q))).length;
             let mathCount = cleanPool.filter(q => syllabusTopics.math.some(top => top.filterFn(q))).length;
             let intelCount = cleanPool.filter(q => syllabusTopics.intelligence.some(top => top.filterFn(q))).length;
@@ -695,22 +716,18 @@
             renderTopicsList();
         }
 
-        // Updated function to display subtopic question counts
         function renderTopicsList() {
             const container = document.getElementById('topics-list-container');
             container.innerHTML = '';
             const topics = syllabusTopics[activeTopicSubject] || [];
 
-            // Prepare unique pool for accurate question counting
             const uniqueMap = new Map();
             masterQuizPool.forEach(q => { if (q && q.question) uniqueMap.set(q.question.trim(), q); });
             const cleanPool = Array.from(uniqueMap.values());
 
             topics.forEach((top) => {
-                // Calculate available questions count for this subtopic
                 const count = cleanPool.filter(top.filterFn).length;
                 
-                // Highlight with soft rose/red if 0 questions so Milind knows where to upload
                 const badgeClass = count === 0 
                     ? 'bg-rose-100 text-rose-700 border border-rose-300' 
                     : 'bg-indigo-100 text-indigo-800';
@@ -1074,6 +1091,7 @@
 
         function resumeMainStory() {
             stopAudio();
+            document.getElementById("deep-dump-box")?.classList.add("hidden");
             document.getElementById("deep-dive-box").classList.add("hidden");
             document.getElementById("ai-status").textContent = "मुख्य कथेवर परतलो.";
         }
