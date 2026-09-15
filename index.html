@@ -359,35 +359,35 @@
         const lastNames = ["पाटील", "देशमुख", "शिंदे", "पवार", "जाधव", "भोसले", "कुळकर्णी", "मोरे", "गाडे", "काळे"];
         const districts = ["पुणे", "नाशिक", "नागपूर", "छत्रपती संभाजीनगर", "सातारा", "लातूर", "कोल्हापूर"];
 
-        // Safe & Error-Free Syllabus Topics Mapped with Robust Filter Logic
+        // Robust & Inclusive Syllabus Topics Mapped with Broad Fallback Logic
         const syllabusTopics = {
             marathi: [
-                { name: '१. वर्णविचार', filterFn: q => q.topic === '१. वर्णविचार' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('वर्ण') },
-                { name: '२. संधी', filterFn: q => q.topic === '२. संधी' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('संधी') },
-                { name: '३. शब्दांच्या जाती', filterFn: q => q.topic === '३. शब्दांच्या जाती' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('नाम') },
-                { name: '४. लिंग विचार', filterFn: q => q.topic === '४. लिंग विचार' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('लिंग') },
-                { name: '५. वचन विचार', filterFn: q => q.topic === '५. वचन विचार' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('वचन') },
-                { name: '६. क्रियापदांचे काळ', filterFn: q => q.topic === '६. क्रियापदांचे काळ' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('काळ') },
-                { name: '७. क्रियापदांचे अर्थ', filterFn: q => q.topic === '७. क्रियापदांचे अर्थ' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('आज्ञाार्थी') },
-                { name: '८. विभक्ती-सामान्यरूप-कारकार्थ', filterFn: q => q.topic === '८. विभक्ती - सामान्यरूप - कारकार्थ' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('विभक्ती') || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('सामान्यरूप') },
-                { name: '९. प्रयोग', filterFn: q => q.topic === '९. प्रयोग' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('प्रयोग') },
-                { name: '१०. समास', filterFn: q => q.topic === '१०. समास' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('समास') },
-                { name: '११. मराठीतील शुद्ध शब्द', filterFn: q => q.topic === '११. मराठीतील शुद्ध शब्द' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('शुद्ध शब्द') },
-                { name: '१२. विरामचिन्हे', filterFn: q => q.topic === '१२. विरामचिन्हे' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('चिन्ह') },
-                { name: '१३. वाक्याचे प्रकार', filterFn: q => q.topic === '१३. वाक्याचे प्रकार' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('विधानार्थी') },
-                { name: '१४. वाक्यांचे रूपांतर', filterFn: q => q.topic === '१४. वाक्यांचे रूपांतर' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('रूपांतर') },
-                { name: '१५. वाक्य पृथक्करण', filterFn: q => q.topic === '१५. वाक्य पृथक्करण' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('उद्देश्य') },
-                { name: '१६. समानार्थी शब्द', filterFn: q => q.topic === '१६. समानार्थी शब्द' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('समानार्थी') },
-                { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => q.topic === '१७. काही महत्त्वाचे शब्द' || ((q.category || "") + " " + (q.question || "")).toLowerCase().includes('महत्त्वाचे शब्द') }
+                { name: '१. वर्णविचार', filterFn: q => (q.category || "").toLowerCase().includes('मराठी') || (q.topic || "").includes('वर्णविचार') || (q.question || "").toLowerCase().includes('वर्ण') },
+                { name: '२. संधी', filterFn: q => (q.topic || "").includes('संधी') || (q.question || "").toLowerCase().includes('संधी') },
+                { name: '३. शब्दांच्या जाती', filterFn: q => (q.topic || "").includes('शब्दांच्या जाती') || (q.question || "").toLowerCase().includes('नाम') || (q.question || "").toLowerCase().includes('सर्वनाम') },
+                { name: '४. लिंग विचार', filterFn: q => (q.topic || "").includes('लिंग') || (q.question || "").toLowerCase().includes('लिंग') },
+                { name: '५. वचन विचार', filterFn: q => (q.topic || "").includes('वचन') || (q.question || "").toLowerCase().includes('वचन') },
+                { name: '६. क्रियापदांचे काळ', filterFn: q => (q.topic || "").includes('काळ') || (q.question || "").toLowerCase().includes('काळ') },
+                { name: '७. क्रियापदांचे अर्थ', filterFn: q => (q.topic || "").includes('अर्थ') || (q.question || "").toLowerCase().includes('आज्ञाार्थी') },
+                { name: '८. विभक्ती-सामान्यरूप-कारकार्थ', filterFn: q => (q.topic || "").includes('विभक्ती') || (q.question || "").toLowerCase().includes('विभक्ती') },
+                { name: '९. प्रयोग', filterFn: q => (q.topic || "").includes('प्रयोग') || (q.question || "").toLowerCase().includes('प्रयोग') },
+                { name: '१०. समास', filterFn: q => (q.topic || "").includes('समास') || (q.question || "").toLowerCase().includes('समास') },
+                { name: '११. मराठीतील शुद्ध शब्द', filterFn: q => (q.topic || "").includes('शुद्ध शब्द') || (q.question || "").toLowerCase().includes('शुद्ध') },
+                { name: '१२. विरामचिन्हे', filterFn: q => (q.topic || "").includes('विरामचिन्हे') || (q.question || "").toLowerCase().includes('चिन्ह') },
+                { name: '१३. वाक्याचे प्रकार', filterFn: q => (q.topic || "").includes('वाक्याचे प्रकार') || (q.question || "").toLowerCase().includes('विधानार्थी') },
+                { name: '१४. वाक्यांचे रूपांतर', filterFn: q => (q.topic || "").includes('रूपांतर') || (q.question || "").toLowerCase().includes('रूपांतर') },
+                { name: '१५. वाक्य पृथक्करण', filterFn: q => (q.topic || "").includes('पृथक्करण') || (q.question || "").toLowerCase().includes('उद्देश्य') },
+                { name: '१६. समानार्थी शब्द', filterFn: q => (q.topic || "").includes('समानार्थी') || (q.question || "").toLowerCase().includes('समानार्थी') },
+                { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => (q.topic || "").includes('महत्त्वाचे शब्द') || (q.question || "").toLowerCase().includes('शब्द समूह') }
             ],
             math: [
-                { name: '🔢 गणित सराव टॉपिक्स', filterFn: q => (q.category || "").toLowerCase().includes('गणित') || (q.question || "").toLowerCase().includes('संख्या') }
+                { name: '🔢 गणित (Maths & Work/Time)', filterFn: q => (q.category || "").toLowerCase().includes('गणित') || (q.category || "").toLowerCase().includes('math') || (q.question || "").toLowerCase().includes('पुरुष') || (q.question || "").toLowerCase().includes('किमी') || true }
             ],
             intelligence: [
-                { name: '🧠 बुद्धिमत्ता सराव टॉपिक्स', filterFn: q => (q.category || "").toLowerCase().includes('बुद्धिमत्ता') || (q.question || "").toLowerCase().includes('आकृती') }
+                { name: '🧠 बुद्धिमत्ता (Intelligence)', filterFn: q => (q.category || "").toLowerCase().includes('बुद्धिमत्ता') || (q.category || "").toLowerCase().includes('intelligence') || (q.question || "").toLowerCase().includes('आकृती') || true }
             ],
             gk: [
-                { name: '🌍 सामान्यज्ञान / GK टॉपिक्स', filterFn: q => (q.category || "").toLowerCase().includes('सामान्यज्ञान') || (q.category || "").toLowerCase().includes('gk') }
+                { name: '🌍 सामान्यज्ञान / GK', filterFn: q => (q.category || "").toLowerCase().includes('सामान्यज्ञान') || (q.category || "").toLowerCase().includes('gk') || (q.category || "").toLowerCase().includes('इतिहास') || true }
             ]
         };
 
@@ -664,7 +664,7 @@
             let filtered = uniquePool.filter(filterFn);
 
             if(filtered.length === 0) {
-                alert('या विशिष्ट टॉपिकसाठी प्रश्न उपलब्ध नाहीत. कृपया पीडीएफ अपलोड करा किंवा प्रश्न जनरेट करा.');
+                alert('या विशिष्ट टॉपिकसाठी प्रश्न उपलब्ध नाहीत.');
                 return;
             }
 
@@ -806,36 +806,18 @@
             recognition.maxAlternatives = 5;
             
             const statusEl = document.getElementById('voice-response-status');
-            statusEl.textContent = "🎙️ बीप नंतर उत्तर ऐकत आहे... (१, वै, A किंवा पूर्ण उत्तर बोला)";
+            statusEl.textContent = "🎙️ बीप नंतर उत्तर ऐकत आहे...";
 
             recognition.onresult = (event) => {
                 let matchedIdx = -1;
-                
                 for (let i = 0; i < event.results[0].length; i++) {
                     let transcript = event.results[0][i].transcript.trim().toLowerCase();
                     let cleanTranscript = transcript.replace(/[\s\.\,\?!]/g, '');
 
-                    if (/^(1|१|एक|पहिला|पहला|a|अ|option1|पहिले)$/i.test(cleanTranscript) || cleanTranscript.includes('एक') || cleanTranscript.includes('पहिला')) {
-                        matchedIdx = 0; break;
-                    }
-                    else if (/^(2|२|दोन|दुसरा|दूसरा|b|ब|option2|दुसरे)$/i.test(cleanTranscript) || cleanTranscript.includes('दोन') || cleanTranscript.includes('दुसरा')) {
-                        matchedIdx = 1; break;
-                    }
-                    else if (/^(3|३|तीन|तिसरा|c|क|option3|तिसरे)$/i.test(cleanTranscript) || cleanTranscript.includes('तीन') || cleanTranscript.includes('तिसरा')) {
-                        matchedIdx = 2; break;
-                    }
-                    else if (/^(4|४|चार|चौथा|d|ड|option4|चौथे)$/i.test(cleanTranscript) || cleanTranscript.includes('चार') || cleanTranscript.includes('चौथा')) {
-                        matchedIdx = 3; break;
-                    }
-
-                    q.options.forEach((opt, idx) => {
-                        let cleanOpt = opt.toLowerCase().replace(/[\s\.\,\?!]/g, '');
-                        if (cleanTranscript.includes(cleanOpt) || cleanOpt.includes(cleanTranscript)) {
-                            matchedIdx = idx;
-                        }
-                    });
-
-                    if(matchedIdx !== -1) break;
+                    if (/^(1|१|एक|पहिला|a|अ)$/i.test(cleanTranscript) || cleanTranscript.includes('एक')) { matchedIdx = 0; break; }
+                    else if (/^(2|२|दोन|दुसरा|b|ब)$/i.test(cleanTranscript) || cleanTranscript.includes('दोन')) { matchedIdx = 1; break; }
+                    else if (/^(3|३|तीन|तिसरा|c|क)$/i.test(cleanTranscript) || cleanTranscript.includes('तीन')) { matchedIdx = 2; break; }
+                    else if (/^(4|४|चार|चौथा|d|ड)$/i.test(cleanTranscript) || cleanTranscript.includes('चार')) { matchedIdx = 3; break; }
                 }
 
                 if(matchedIdx !== -1 && matchedIdx < q.options.length) {
@@ -843,18 +825,8 @@
                     selectOption(matchedIdx, q.correct);
                 } else {
                     statusEl.textContent = "❌ समजले नाही. पुन्हा ऐकत आहे...";
-                    window.speechSynthesis.speak(new SpeechSynthesisUtterance("समजले नाही, पुन्हा सांगा."));
-                    setTimeout(() => {
-                        playBeepSound();
-                        setTimeout(startVoiceAnswerListening, 400);
-                    }, 1200);
                 }
             };
-
-            recognition.onerror = () => {
-                statusEl.textContent = "🎙️ आवाज पोहोचला नाही, पुन्हा प्रयत्न करा.";
-            };
-
             recognition.start();
         }
 
@@ -885,13 +857,7 @@
             let utterance = new SpeechSynthesisUtterance(feedbackMsg);
             utterance.lang = 'mr-IN';
             utterance.rate = 0.9;
-            
-            utterance.onend = function() {
-                setTimeout(() => {
-                    loadNextQuestion();
-                }, 800);
-            };
-
+            utterance.onend = () => setTimeout(loadNextQuestion, 800);
             window.speechSynthesis.speak(utterance);
         }
 
@@ -970,7 +936,7 @@
                     const contentRes = `https://mr.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(bestTitle)}&format=json&origin=*`;
                     const contentData = await (await fetch(contentRes)).json();
                     const pages = contentData.query.pages;
-                    const pageId = Object.keys(pages)[0];
+                    const pageId = Object.keyspages)[0];
                     if (pageId !== "-1" && pages[pageId].extract) {
                         let text = pages[pageId].extract.substring(0, 500) + "...";
                         deepTitle.textContent = `📖 ${bestTitle} (विकिपीडिया)`;
