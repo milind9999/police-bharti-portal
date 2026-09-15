@@ -360,7 +360,7 @@
         const districts = ["पुणे", "नाशिक", "नागपूर", "छत्रपती संभाजीनगर", "सातारा", "लातूर", "कोल्हापूर"];
 
         // Robust & Inclusive Syllabus Topics Mapped with Broad Fallback Logic
-        const syllabusTopics = {
+      const syllabusTopics = {
             marathi: [
                 { name: '१. वर्णविचार', filterFn: q => (q.category || "").toLowerCase().includes('मराठी') || (q.topic || "").includes('वर्णविचार') || (q.question || "").toLowerCase().includes('वर्ण') },
                 { name: '२. संधी', filterFn: q => (q.topic || "").includes('संधी') || (q.question || "").toLowerCase().includes('संधी') },
@@ -381,13 +381,32 @@
                 { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => (q.topic || "").includes('महत्त्वाचे शब्द') || (q.question || "").toLowerCase().includes('शब्द समूह') }
             ],
             math: [
-                { name: '🔢 गणित (Maths & Work/Time)', filterFn: q => (q.category || "").toLowerCase().includes('गणित') || (q.category || "").toLowerCase().includes('math') || (q.question || "").toLowerCase().includes('पुरुष') || (q.question || "").toLowerCase().includes('किमी') || true }
+                { 
+                    name: '🔢 गणित (Maths & Work/Time)', 
+                    filterFn: q => {
+                        let cat = (q.category || "").toLowerCase();
+                        let text = (q.question || "").toLowerCase();
+                        return cat.includes('गणित') || cat.includes('math') || text.includes('पुरुष') || text.includes('किमी') || text.includes('दिवसात') || text.includes('वेगाने') || text.includes('काम');
+                    } 
+                }
             ],
             intelligence: [
-                { name: '🧠 बुद्धिमत्ता (Intelligence)', filterFn: q => (q.category || "").toLowerCase().includes('बुद्धिमत्ता') || (q.category || "").toLowerCase().includes('intelligence') || (q.question || "").toLowerCase().includes('आकृती') || true }
+                { 
+                    name: '🧠 बुद्धिमत्ता (Intelligence)', 
+                    filterFn: q => {
+                        let cat = (q.category || "").toLowerCase();
+                        return cat.includes('बुद्धिमत्ता') || cat.includes('intelligence') || cat.includes('reasoning') || cat.includes('आकृती');
+                    } 
+                }
             ],
             gk: [
-                { name: '🌍 सामान्यज्ञान / GK', filterFn: q => (q.category || "").toLowerCase().includes('सामान्यज्ञान') || (q.category || "").toLowerCase().includes('gk') || (q.category || "").toLowerCase().includes('इतिहास') || true }
+                { 
+                    name: '🌍 सामान्यज्ञान / GK', 
+                    filterFn: q => {
+                        let cat = (q.category || "").toLowerCase();
+                        return cat.includes('सामान्यज्ञान') || cat.includes('gk') || cat.includes('इतिहास') || cat.includes('भूगोल') || cat.includes('राज्यघटना');
+                    } 
+                }
             ]
         };
 
