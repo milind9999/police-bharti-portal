@@ -360,7 +360,7 @@
         const districts = ["पुणे", "नाशिक", "नागपूर", "छत्रपती संभाजीनगर", "सातारा", "लातूर", "कोल्हापूर"];
 
         // Robust & Inclusive Syllabus Topics Mapped with Broad Fallback Logic
-      const syllabusTopics = {
+     const syllabusTopics = {
             marathi: [
                 { name: '१. वर्णविचार', filterFn: q => (q.category || "").toLowerCase().includes('मराठी') || (q.topic || "").includes('वर्णविचार') || (q.question || "").toLowerCase().includes('वर्ण') },
                 { name: '२. संधी', filterFn: q => (q.topic || "").includes('संधी') || (q.question || "").toLowerCase().includes('संधी') },
@@ -378,7 +378,28 @@
                 { name: '१४. वाक्यांचे रूपांतर', filterFn: q => (q.topic || "").includes('रूपांतर') || (q.question || "").toLowerCase().includes('रूपांतर') },
                 { name: '१५. वाक्य पृथक्करण', filterFn: q => (q.topic || "").includes('पृथक्करण') || (q.question || "").toLowerCase().includes('उद्देश्य') },
                 { name: '१६. समानार्थी शब्द', filterFn: q => (q.topic || "").includes('समानार्थी') || (q.question || "").toLowerCase().includes('समानार्थी') },
-                { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => (q.topic || "").includes('महत्त्वाचे शब्द') || (q.question || "").toLowerCase().includes('शब्द समूह') }
+                { name: '१७. काही महत्त्वाचे शब्द', filterFn: q => (q.topic || "").includes('महत्त्वाचे शब्द') || (q.question || "").toLowerCase().includes('शब्द समूह') },
+                { name: '१८. एकाच शब्दाचे अनेक अर्थ', filterFn: q => (q.topic || "").includes('एकाच शब्दाचे अनेक अर्थ') || (q.question || "").toLowerCase().includes('अनेक अर्थ') },
+                { name: '१९. सारखे वाटणारे शब्द', filterFn: q => (q.topic || "").includes('सारखे वाटणारे शब्द') || (q.question || "").toLowerCase().includes('सारखे') },
+                { name: '२०. जोडशब्द', filterFn: q => (q.topic || "").includes('जोडशब्द') || (q.question || "").toLowerCase().includes('जोडशब्द') },
+                { name: '२१. विरुद्धार्थी शब्द', filterFn: q => (q.topic || "").includes('विरुद्धार्थी') || (q.question || "").toLowerCase().includes('विरुद्धार्थी') },
+                { name: '२२. शब्दसमूहाबद्दल एक शब्द', filterFn: q => (q.topic || "").includes('शब्दसमूहाबद्दल एक शब्द') || (q.question || "").toLowerCase().includes('शब्दसमूह') },
+                { name: '२३. अलंकारिक शब्द', filterFn: q => (q.topic || "").includes('अलंकारिक शब्द') || (q.question || "").toLowerCase().includes('अलंकारिक') },
+                { name: '२४. वाक्प्रचार', filterFn: q => (q.topic || "").includes('वाक्प्रचार') || (q.question || "").toLowerCase().includes('वाक्प्रचार') },
+                { name: '२५. महत्वाच्या म्हणी', filterFn: q => (q.topic || "").includes('म्हणी') || (q.question || "").toLowerCase().includes('म्हण') },
+                { name: '२६. शब्दसिद्धी', filterFn: q => (q.topic || "").includes('शब्दसिद्धी') || (q.question || "").toLowerCase().includes('सिद्धी') },
+                { name: '२७. शब्दांच्या शक्ती', filterFn: q => (q.topic || "").includes('शब्दांच्या शक्ती') || (q.question || "").toLowerCase().includes('शक्ती') },
+                { name: '२८. अलंकार', filterFn: q => (q.topic || "").includes('अलंकार') || (q.question || "").toLowerCase().includes('अलंकार') },
+                { name: '२९. वृत्त', filterFn: q => (q.topic || "").includes('वृत्त') || (q.question || "").toLowerCase().includes('वृत्त') },
+                { name: '३०. रस', filterFn: q => (q.topic || "").includes('रस') || (q.question || "").toLowerCase().includes('रस') },
+                { name: '३१. ध्वनीदर्शक शब्द', filterFn: q => (q.topic || "").includes('ध्वनीदर्शक') || (q.question || "").toLowerCase().includes('ध्वनी') },
+                { name: '३२. प्राणी व त्यांची घरे', filterFn: q => (q.topic || "").includes('प्राणी व त्यांची घरे') || (q.question || "").toLowerCase().includes('घरे') },
+                { name: '३३. प्राणी व त्यांची पिल्ले', filterFn: q => (q.topic || "").includes('प्राणी व त्यांची पिल्ले') || (q.question || "").toLowerCase().includes('पिल्ले') },
+                { name: '३४. समूहदर्शक शब्द', filterFn: q => (q.topic || "").includes('समूहदर्शक') || (q.question || "").toLowerCase().includes('समूहदर्शक') },
+                { name: '३५. मराठीतील टोपणनावे', filterFn: q => (q.topic || "").includes('टोपणनावे') || (q.question || "").toLowerCase().includes('टोपणनाव') },
+                { name: '३६. लेखक व साहित्य', filterFn: q => (q.topic || "").includes('लेखक व साहित्य') || (q.question || "").toLowerCase().includes('साहित्य') },
+                { name: '३७. संकीर्ण', filterFn: q => (q.topic || "").includes('संकीर्ण') || (q.category || "").includes('संकीर्ण') },
+                { name: '३८. अव्यय', filterFn: q => (q.topic || "").includes('अव्यय') || (q.question || "").toLowerCase().includes('अव्यय') }
             ],
             math: [
                 { 
@@ -409,7 +430,6 @@
                 }
             ]
         };
-
         function generateVirtualCompetitors(totalCount = 10000) {
             let pool = [];
             for (let i = 1; i <= totalCount; i++) {
